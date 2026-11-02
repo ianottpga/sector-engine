@@ -1,0 +1,74 @@
+name: Daily refresh
+
+on:
+  schedule:
+    # 21:45 UTC Mon-Fri = 5:45 pm ET in summer, 4:45 pm ET in winter (both after the close)
+    - cron: "45 21 * * 1-5"
+  workflow_dispatch: {}   # "Run workflow" button for a manual refresh
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pipeline/requirements.txt
+
+      - name: Run signal pipeline
+        working-directory: pipeline
+        run: |
+          pip install -r requirements.txt
+          python run_daily.py
+
+      - name: Commit data and track record
+        run: |
+          git config user.name "sector-engine-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add web/public/data history
+          git diff --cached --quiet || git commit -m "data: $(date -u +%F) close"
+          git push
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Build dashboard
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build project website (home page) around the dashboard
+        run: |
+          python site/build_site.py
+          mv web/dist/index.html web/dist/dashboard.html
+          cp site/standalone.html web/dist/index.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

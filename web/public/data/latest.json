@@ -1,0 +1,1085 @@
+{
+ "asOf": "2026-10-29",
+ "bias": {
+  "score": 70.5,
+  "label": "Bullish",
+  "confidence": 100,
+  "agreement": 1.0,
+  "factors": [
+   {
+    "key": "trend",
+    "reading": 0.334,
+    "weight": 0.2,
+    "contribution": 6.7,
+    "detail": "SPY +7.5% vs 200-day; 50-day slope -0.6%/mo"
+   },
+   {
+    "key": "momentum",
+    "reading": 0.927,
+    "weight": 0.15,
+    "contribution": 13.9,
+    "detail": "SPY +7.2% (21d), +8.5% (63d)"
+   },
+   {
+    "key": "breadth",
+    "reading": 0.612,
+    "weight": 0.2,
+    "contribution": 12.2,
+    "detail": "91% of sectors above 50-day, 100% up over 63d; RSP vs SPY +0.1%"
+   },
+   {
+    "key": "risk_appetite",
+    "reading": 0.842,
+    "weight": 0.15,
+    "contribution": 12.6,
+    "detail": "Cyclicals minus defensives +4.9% (63d)"
+   },
+   {
+    "key": "volatility",
+    "reading": 0.826,
+    "weight": 0.1,
+    "contribution": 8.3,
+    "detail": "VIX 13.2; VIX3M/VIX 1.10"
+   },
+   {
+    "key": "credit",
+    "reading": 0.988,
+    "weight": 0.15,
+    "contribution": 14.8,
+    "detail": "HYG/IEF +6.4% (63d)"
+   },
+   {
+    "key": "financial_conditions",
+    "reading": 0.39,
+    "weight": 0.05,
+    "contribution": 1.9,
+    "detail": "NFCI -0.56, 13-week change +0.01"
+   }
+  ],
+  "calibrated": {
+   "bucket": "40 and above",
+   "n": 53,
+   "historicalHitRate63": 60.8,
+   "avgSpy63": 2.85
+  }
+ },
+ "benchmark": {
+  "ticker": "SPY",
+  "ret30": 7.24,
+  "ret90": 8.49,
+  "levels": {
+   "last": 565.95,
+   "atr14": 13.51,
+   "sma20": 526.49,
+   "sma50": 529.33,
+   "sma200": 526.48,
+   "pivot": 544.4,
+   "r1": 590.18,
+   "s1": 520.18,
+   "high63": 568.63,
+   "low63": 498.63
+  }
+ },
+ "sectors": [
+  {
+   "ticker": "XLI",
+   "name": "Industrials",
+   "group": "Sensitive",
+   "ret30": 13.2,
+   "ret90": 25.28,
+   "vsSpy30": 5.96,
+   "vsSpy90": 16.78,
+   "composite": 12.456,
+   "volatility": 26.0,
+   "riskAdjusted": 2.58,
+   "trend": 1.0,
+   "regimeFit": 0.53,
+   "score": 1.42,
+   "quadrant": "Leading",
+   "rank": 1
+  },
+  {
+   "ticker": "XLRE",
+   "name": "Real Estate",
+   "group": "Cyclical",
+   "ret30": 10.89,
+   "ret90": 24.17,
+   "vsSpy30": 3.66,
+   "vsSpy90": 15.68,
+   "composite": 10.871,
+   "volatility": 23.0,
+   "riskAdjusted": 2.73,
+   "trend": 1.0,
+   "regimeFit": 0.7,
+   "score": 1.36,
+   "quadrant": "Leading",
+   "rank": 2
+  },
+  {
+   "ticker": "XLC",
+   "name": "Communication Services",
+   "group": "Sensitive",
+   "ret30": 10.82,
+   "ret90": 17.83,
+   "vsSpy30": 3.59,
+   "vsSpy90": 9.34,
+   "composite": 7.039,
+   "volatility": 25.9,
+   "riskAdjusted": 1.44,
+   "trend": 1.0,
+   "regimeFit": 0.53,
+   "score": 0.833,
+   "quadrant": "Leading",
+   "rank": 3
+  },
+  {
+   "ticker": "XLV",
+   "name": "Health Care",
+   "group": "Defensive",
+   "ret30": 13.93,
+   "ret90": 14.61,
+   "vsSpy30": 6.7,
+   "vsSpy90": 6.12,
+   "composite": 6.352,
+   "volatility": 18.6,
+   "riskAdjusted": 1.31,
+   "trend": 1.0,
+   "regimeFit": -0.7,
+   "score": 0.483,
+   "quadrant": "Leading",
+   "rank": 4
+  },
+  {
+   "ticker": "XLY",
+   "name": "Consumer Discretionary",
+   "group": "Cyclical",
+   "ret30": 8.29,
+   "ret90": 10.11,
+   "vsSpy30": 1.05,
+   "vsSpy90": 1.62,
+   "composite": 1.395,
+   "volatility": 29.4,
+   "riskAdjusted": 0.22,
+   "trend": 1.0,
+   "regimeFit": 0.7,
+   "score": 0.255,
+   "quadrant": "Leading",
+   "rank": 5
+  },
+  {
+   "ticker": "XLF",
+   "name": "Financials",
+   "group": "Cyclical",
+   "ret30": 6.22,
+   "ret90": 7.32,
+   "vsSpy30": -1.01,
+   "vsSpy90": -1.18,
+   "composite": -1.111,
+   "volatility": 29.9,
+   "riskAdjusted": -0.16,
+   "trend": 1.0,
+   "regimeFit": 0.7,
+   "score": 0.006,
+   "quadrant": "Lagging",
+   "rank": 6
+  },
+  {
+   "ticker": "XLK",
+   "name": "Technology",
+   "group": "Sensitive",
+   "ret30": 13.42,
+   "ret90": 7.48,
+   "vsSpy30": 6.19,
+   "vsSpy90": -1.01,
+   "composite": 1.869,
+   "volatility": 31.5,
+   "riskAdjusted": -0.13,
+   "trend": 0.0,
+   "regimeFit": 0.53,
+   "score": -0.0,
+   "quadrant": "Improving",
+   "rank": 7
+  },
+  {
+   "ticker": "XLB",
+   "name": "Materials",
+   "group": "Cyclical",
+   "ret30": 5.23,
+   "ret90": 8.17,
+   "vsSpy30": -2.01,
+   "vsSpy90": -0.33,
+   "composite": -0.998,
+   "volatility": 23.9,
+   "riskAdjusted": -0.05,
+   "trend": 0.0,
+   "regimeFit": 0.7,
+   "score": -0.17,
+   "quadrant": "Lagging",
+   "rank": 8
+  },
+  {
+   "ticker": "XLE",
+   "name": "Energy",
+   "group": "Sensitive",
+   "ret30": 5.52,
+   "ret90": 4.3,
+   "vsSpy30": -1.72,
+   "vsSpy90": -4.19,
+   "composite": -3.203,
+   "volatility": 23.7,
+   "riskAdjusted": -0.71,
+   "trend": 0.0,
+   "regimeFit": 0.53,
+   "score": -0.477,
+   "quadrant": "Lagging",
+   "rank": 9
+  },
+  {
+   "ticker": "XLU",
+   "name": "Utilities",
+   "group": "Defensive",
+   "ret30": 3.36,
+   "ret90": 6.31,
+   "vsSpy30": -3.87,
+   "vsSpy90": -2.19,
+   "composite": -2.861,
+   "volatility": 17.8,
+   "riskAdjusted": -0.49,
+   "trend": 0.0,
+   "regimeFit": -0.7,
+   "score": -0.696,
+   "quadrant": "Lagging",
+   "rank": 10
+  },
+  {
+   "ticker": "XLP",
+   "name": "Consumer Staples",
+   "group": "Defensive",
+   "ret30": 0.5,
+   "ret90": 1.65,
+   "vsSpy30": -6.73,
+   "vsSpy90": -6.84,
+   "composite": -6.798,
+   "volatility": 16.0,
+   "riskAdjusted": -1.71,
+   "trend": 0.0,
+   "regimeFit": -0.7,
+   "score": -1.181,
+   "quadrant": "Lagging",
+   "rank": 11
+  }
+ ],
+ "ideas": {
+  "longs": [
+   {
+    "ticker": "XLI",
+    "name": "Industrials",
+    "side": "Long",
+    "why": "Rank #1, leading, +16.8% vs SPY over 90d",
+    "score": 1.42,
+    "quadrant": "Leading",
+    "entry": [
+     137.57,
+     140.91
+    ],
+    "stop": 134.23,
+    "target": 150.93,
+    "rewardRisk": 1.5,
+    "levels": {
+     "last": 140.91,
+     "atr14": 3.34,
+     "sma20": 126.57,
+     "sma50": 125.66,
+     "sma200": 115.84,
+     "pivot": 133.81,
+     "r1": 148.97,
+     "s1": 125.75,
+     "high63": 141.87,
+     "low63": 112.9
+    }
+   },
+   {
+    "ticker": "XLRE",
+    "name": "Real Estate",
+    "side": "Long",
+    "why": "Rank #2, leading, +15.7% vs SPY over 90d",
+    "score": 1.36,
+    "quadrant": "Leading",
+    "entry": [
+     43.66,
+     44.63
+    ],
+    "stop": 42.69,
+    "target": 47.54,
+    "rewardRisk": 1.5,
+    "levels": {
+     "last": 44.63,
+     "atr14": 0.97,
+     "sma20": 40.8,
+     "sma50": 39.69,
+     "sma200": 38.4,
+     "pivot": 42.84,
+     "r1": 46.71,
+     "s1": 40.76,
+     "high63": 44.92,
+     "low63": 35.95
+    }
+   },
+   {
+    "ticker": "XLC",
+    "name": "Communication Services",
+    "side": "Long",
+    "why": "Rank #3, leading, +9.3% vs SPY over 90d",
+    "score": 0.833,
+    "quadrant": "Leading",
+    "entry": [
+     105.16,
+     107.7
+    ],
+    "stop": 102.62,
+    "target": 115.32,
+    "rewardRisk": 1.5,
+    "levels": {
+     "last": 107.7,
+     "atr14": 2.54,
+     "sma20": 95.71,
+     "sma50": 96.17,
+     "sma200": 91.76,
+     "pivot": 102.15,
+     "r1": 113.86,
+     "s1": 96.0,
+     "high63": 108.3,
+     "low63": 90.44
+    }
+   }
+  ],
+  "hedge": {
+   "ticker": "XLP",
+   "name": "Consumer Staples",
+   "side": "Underweight",
+   "why": "Weakest sector (rank #11); funding source or pair-trade short",
+   "score": -1.181,
+   "quadrant": "Lagging",
+   "entry": [
+    77.01,
+    75.3
+   ],
+   "stop": 79.71,
+   "target": 72.96,
+   "rewardRisk": 1.5,
+   "levels": {
+    "last": 77.01,
+    "atr14": 1.35,
+    "sma20": 75.3,
+    "sma50": 77.49,
+    "sma200": 75.16,
+    "pivot": 75.89,
+    "r1": 78.78,
+    "s1": 74.12,
+    "high63": 83.19,
+    "low63": 73.01
+   }
+  }
+ },
+ "config": {
+  "w30": 0.4,
+  "w90": 0.6,
+  "bull": 20.0,
+  "bear": -20.0
+ },
+ "biasHistory": [
+  {
+   "date": "2026-05-07",
+   "score": 31.5,
+   "spy": 516.29
+  },
+  {
+   "date": "2026-05-08",
+   "score": 21.7,
+   "spy": 510.64
+  },
+  {
+   "date": "2026-05-11",
+   "score": 42.9,
+   "spy": 531.88
+  },
+  {
+   "date": "2026-05-12",
+   "score": 42.6,
+   "spy": 535.68
+  },
+  {
+   "date": "2026-05-13",
+   "score": 42.7,
+   "spy": 533.49
+  },
+  {
+   "date": "2026-05-14",
+   "score": 53.8,
+   "spy": 543.74
+  },
+  {
+   "date": "2026-05-15",
+   "score": 53.0,
+   "spy": 548.5
+  },
+  {
+   "date": "2026-05-18",
+   "score": 35.3,
+   "spy": 542.27
+  },
+  {
+   "date": "2026-05-19",
+   "score": 47.8,
+   "spy": 548.82
+  },
+  {
+   "date": "2026-05-20",
+   "score": 22.0,
+   "spy": 543.39
+  },
+  {
+   "date": "2026-05-21",
+   "score": -7.1,
+   "spy": 525.52
+  },
+  {
+   "date": "2026-05-22",
+   "score": 18.4,
+   "spy": 544.37
+  },
+  {
+   "date": "2026-05-25",
+   "score": 13.0,
+   "spy": 540.56
+  },
+  {
+   "date": "2026-05-26",
+   "score": 7.9,
+   "spy": 534.26
+  },
+  {
+   "date": "2026-05-27",
+   "score": 21.5,
+   "spy": 537.14
+  },
+  {
+   "date": "2026-05-28",
+   "score": 0.0,
+   "spy": 521.69
+  },
+  {
+   "date": "2026-05-29",
+   "score": -26.4,
+   "spy": 508.61
+  },
+  {
+   "date": "2026-06-01",
+   "score": -30.0,
+   "spy": 503.68
+  },
+  {
+   "date": "2026-06-02",
+   "score": -38.9,
+   "spy": 498.62
+  },
+  {
+   "date": "2026-06-03",
+   "score": -34.4,
+   "spy": 498.91
+  },
+  {
+   "date": "2026-06-04",
+   "score": -7.2,
+   "spy": 508.64
+  },
+  {
+   "date": "2026-06-05",
+   "score": -19.4,
+   "spy": 503.95
+  },
+  {
+   "date": "2026-06-08",
+   "score": -14.3,
+   "spy": 508.07
+  },
+  {
+   "date": "2026-06-09",
+   "score": -7.5,
+   "spy": 513.21
+  },
+  {
+   "date": "2026-06-10",
+   "score": -28.0,
+   "spy": 502.84
+  },
+  {
+   "date": "2026-06-11",
+   "score": -25.5,
+   "spy": 504.55
+  },
+  {
+   "date": "2026-06-12",
+   "score": -43.7,
+   "spy": 495.64
+  },
+  {
+   "date": "2026-06-15",
+   "score": -33.5,
+   "spy": 504.78
+  },
+  {
+   "date": "2026-06-16",
+   "score": -36.2,
+   "spy": 508.56
+  },
+  {
+   "date": "2026-06-17",
+   "score": -41.3,
+   "spy": 508.36
+  },
+  {
+   "date": "2026-06-18",
+   "score": -56.3,
+   "spy": 495.74
+  },
+  {
+   "date": "2026-06-19",
+   "score": -56.7,
+   "spy": 496.43
+  },
+  {
+   "date": "2026-06-22",
+   "score": -59.6,
+   "spy": 489.23
+  },
+  {
+   "date": "2026-06-23",
+   "score": -59.7,
+   "spy": 495.11
+  },
+  {
+   "date": "2026-06-24",
+   "score": -61.5,
+   "spy": 493.7
+  },
+  {
+   "date": "2026-06-25",
+   "score": -65.7,
+   "spy": 486.13
+  },
+  {
+   "date": "2026-06-26",
+   "score": -65.4,
+   "spy": 493.89
+  },
+  {
+   "date": "2026-06-29",
+   "score": -60.4,
+   "spy": 499.96
+  },
+  {
+   "date": "2026-06-30",
+   "score": -65.1,
+   "spy": 494.27
+  },
+  {
+   "date": "2026-07-01",
+   "score": -52.1,
+   "spy": 504.26
+  },
+  {
+   "date": "2026-07-02",
+   "score": -57.4,
+   "spy": 501.2
+  },
+  {
+   "date": "2026-07-03",
+   "score": -65.5,
+   "spy": 498.06
+  },
+  {
+   "date": "2026-07-06",
+   "score": -58.9,
+   "spy": 498.82
+  },
+  {
+   "date": "2026-07-07",
+   "score": -66.1,
+   "spy": 491.71
+  },
+  {
+   "date": "2026-07-08",
+   "score": -67.0,
+   "spy": 487.46
+  },
+  {
+   "date": "2026-07-09",
+   "score": -64.4,
+   "spy": 485.71
+  },
+  {
+   "date": "2026-07-10",
+   "score": -62.9,
+   "spy": 493.29
+  },
+  {
+   "date": "2026-07-13",
+   "score": -47.0,
+   "spy": 500.84
+  },
+  {
+   "date": "2026-07-14",
+   "score": -55.3,
+   "spy": 499.69
+  },
+  {
+   "date": "2026-07-15",
+   "score": -47.4,
+   "spy": 507.89
+  },
+  {
+   "date": "2026-07-16",
+   "score": -41.4,
+   "spy": 507.82
+  },
+  {
+   "date": "2026-07-17",
+   "score": -35.8,
+   "spy": 509.9
+  },
+  {
+   "date": "2026-07-20",
+   "score": -22.8,
+   "spy": 514.56
+  },
+  {
+   "date": "2026-07-21",
+   "score": -25.4,
+   "spy": 516.22
+  },
+  {
+   "date": "2026-07-22",
+   "score": -5.1,
+   "spy": 528.84
+  },
+  {
+   "date": "2026-07-23",
+   "score": 9.0,
+   "spy": 530.29
+  },
+  {
+   "date": "2026-07-24",
+   "score": 1.0,
+   "spy": 524.1
+  },
+  {
+   "date": "2026-07-27",
+   "score": 15.9,
+   "spy": 531.1
+  },
+  {
+   "date": "2026-07-28",
+   "score": 15.1,
+   "spy": 529.07
+  },
+  {
+   "date": "2026-07-29",
+   "score": 36.3,
+   "spy": 527.62
+  },
+  {
+   "date": "2026-07-30",
+   "score": -0.7,
+   "spy": 511.99
+  },
+  {
+   "date": "2026-07-31",
+   "score": -0.9,
+   "spy": 517.27
+  },
+  {
+   "date": "2026-08-03",
+   "score": 17.2,
+   "spy": 521.66
+  },
+  {
+   "date": "2026-08-04",
+   "score": 16.5,
+   "spy": 525.98
+  },
+  {
+   "date": "2026-08-05",
+   "score": 29.2,
+   "spy": 531.29
+  },
+  {
+   "date": "2026-08-06",
+   "score": 22.0,
+   "spy": 540.43
+  },
+  {
+   "date": "2026-08-07",
+   "score": 13.6,
+   "spy": 540.34
+  },
+  {
+   "date": "2026-08-10",
+   "score": 26.5,
+   "spy": 545.57
+  },
+  {
+   "date": "2026-08-11",
+   "score": 11.4,
+   "spy": 541.68
+  },
+  {
+   "date": "2026-08-12",
+   "score": 9.6,
+   "spy": 539.92
+  },
+  {
+   "date": "2026-08-13",
+   "score": 28.4,
+   "spy": 545.79
+  },
+  {
+   "date": "2026-08-14",
+   "score": 23.1,
+   "spy": 548.09
+  },
+  {
+   "date": "2026-08-17",
+   "score": 25.3,
+   "spy": 540.94
+  },
+  {
+   "date": "2026-08-18",
+   "score": 48.7,
+   "spy": 543.06
+  },
+  {
+   "date": "2026-08-19",
+   "score": 25.2,
+   "spy": 542.23
+  },
+  {
+   "date": "2026-08-20",
+   "score": 33.9,
+   "spy": 537.95
+  },
+  {
+   "date": "2026-08-21",
+   "score": 42.3,
+   "spy": 540.45
+  },
+  {
+   "date": "2026-08-24",
+   "score": 39.3,
+   "spy": 538.43
+  },
+  {
+   "date": "2026-08-25",
+   "score": 40.0,
+   "spy": 530.13
+  },
+  {
+   "date": "2026-08-26",
+   "score": 42.4,
+   "spy": 524.4
+  },
+  {
+   "date": "2026-08-27",
+   "score": 61.1,
+   "spy": 533.84
+  },
+  {
+   "date": "2026-08-28",
+   "score": 58.5,
+   "spy": 525.91
+  },
+  {
+   "date": "2026-08-31",
+   "score": 61.2,
+   "spy": 527.24
+  },
+  {
+   "date": "2026-09-01",
+   "score": 59.2,
+   "spy": 530.61
+  },
+  {
+   "date": "2026-09-02",
+   "score": 67.1,
+   "spy": 534.16
+  },
+  {
+   "date": "2026-09-03",
+   "score": 52.4,
+   "spy": 527.78
+  },
+  {
+   "date": "2026-09-04",
+   "score": 43.0,
+   "spy": 526.24
+  },
+  {
+   "date": "2026-09-07",
+   "score": 49.2,
+   "spy": 527.14
+  },
+  {
+   "date": "2026-09-08",
+   "score": 50.7,
+   "spy": 531.52
+  },
+  {
+   "date": "2026-09-09",
+   "score": 54.0,
+   "spy": 528.25
+  },
+  {
+   "date": "2026-09-10",
+   "score": 39.6,
+   "spy": 522.26
+  },
+  {
+   "date": "2026-09-11",
+   "score": 42.4,
+   "spy": 527.65
+  },
+  {
+   "date": "2026-09-14",
+   "score": 52.7,
+   "spy": 533.64
+  },
+  {
+   "date": "2026-09-15",
+   "score": 60.5,
+   "spy": 535.78
+  },
+  {
+   "date": "2026-09-16",
+   "score": 57.4,
+   "spy": 532.68
+  },
+  {
+   "date": "2026-09-17",
+   "score": 61.2,
+   "spy": 535.0
+  },
+  {
+   "date": "2026-09-18",
+   "score": 63.0,
+   "spy": 535.75
+  },
+  {
+   "date": "2026-09-21",
+   "score": 68.7,
+   "spy": 540.4
+  },
+  {
+   "date": "2026-09-22",
+   "score": 63.3,
+   "spy": 533.81
+  },
+  {
+   "date": "2026-09-23",
+   "score": 70.1,
+   "spy": 534.59
+  },
+  {
+   "date": "2026-09-24",
+   "score": 71.2,
+   "spy": 533.9
+  },
+  {
+   "date": "2026-09-25",
+   "score": 56.5,
+   "spy": 528.13
+  },
+  {
+   "date": "2026-09-28",
+   "score": 55.2,
+   "spy": 529.43
+  },
+  {
+   "date": "2026-09-29",
+   "score": 56.6,
+   "spy": 529.78
+  },
+  {
+   "date": "2026-09-30",
+   "score": 52.1,
+   "spy": 527.76
+  },
+  {
+   "date": "2026-10-01",
+   "score": 52.1,
+   "spy": 530.01
+  },
+  {
+   "date": "2026-10-02",
+   "score": 32.7,
+   "spy": 516.1
+  },
+  {
+   "date": "2026-10-05",
+   "score": 32.6,
+   "spy": 515.24
+  },
+  {
+   "date": "2026-10-06",
+   "score": 38.3,
+   "spy": 518.88
+  },
+  {
+   "date": "2026-10-07",
+   "score": 42.4,
+   "spy": 521.17
+  },
+  {
+   "date": "2026-10-08",
+   "score": 53.6,
+   "spy": 530.91
+  },
+  {
+   "date": "2026-10-09",
+   "score": 33.9,
+   "spy": 519.06
+  },
+  {
+   "date": "2026-10-12",
+   "score": -6.1,
+   "spy": 504.6
+  },
+  {
+   "date": "2026-10-13",
+   "score": 2.6,
+   "spy": 506.42
+  },
+  {
+   "date": "2026-10-14",
+   "score": 5.2,
+   "spy": 510.22
+  },
+  {
+   "date": "2026-10-15",
+   "score": 26.3,
+   "spy": 529.33
+  },
+  {
+   "date": "2026-10-16",
+   "score": 39.2,
+   "spy": 534.83
+  },
+  {
+   "date": "2026-10-19",
+   "score": 7.9,
+   "spy": 526.05
+  },
+  {
+   "date": "2026-10-20",
+   "score": 21.0,
+   "spy": 533.31
+  },
+  {
+   "date": "2026-10-21",
+   "score": 8.9,
+   "spy": 524.82
+  },
+  {
+   "date": "2026-10-22",
+   "score": -23.4,
+   "spy": 510.41
+  },
+  {
+   "date": "2026-10-23",
+   "score": 31.5,
+   "spy": 534.03
+  },
+  {
+   "date": "2026-10-26",
+   "score": 37.3,
+   "spy": 536.79
+  },
+  {
+   "date": "2026-10-27",
+   "score": 61.4,
+   "spy": 543.32
+  },
+  {
+   "date": "2026-10-28",
+   "score": 62.3,
+   "spy": 548.45
+  },
+  {
+   "date": "2026-10-29",
+   "score": 70.9,
+   "spy": 565.95
+  }
+ ],
+ "track": {
+  "daysLogged": 1,
+  "gradedCalls21": 0,
+  "hitRate21": null,
+  "recent": [
+   {
+    "date": "2026-10-29",
+    "score": 70.5,
+    "label": "Bullish",
+    "top3": "XLI,XLRE,XLC",
+    "spy21": null,
+    "spy63": null
+   }
+  ]
+ },
+ "generatedAt": "2026-10-30T01:41:44+00:00",
+ "sample": true,
+ "universe": {
+  "XLK": {
+   "name": "Technology",
+   "group": "Sensitive"
+  },
+  "XLC": {
+   "name": "Communication Services",
+   "group": "Sensitive"
+  },
+  "XLI": {
+   "name": "Industrials",
+   "group": "Sensitive"
+  },
+  "XLE": {
+   "name": "Energy",
+   "group": "Sensitive"
+  },
+  "XLF": {
+   "name": "Financials",
+   "group": "Cyclical"
+  },
+  "XLY": {
+   "name": "Consumer Discretionary",
+   "group": "Cyclical"
+  },
+  "XLB": {
+   "name": "Materials",
+   "group": "Cyclical"
+  },
+  "XLRE": {
+   "name": "Real Estate",
+   "group": "Cyclical"
+  },
+  "XLV": {
+   "name": "Health Care",
+   "group": "Defensive"
+  },
+  "XLP": {
+   "name": "Consumer Staples",
+   "group": "Defensive"
+  },
+  "XLU": {
+   "name": "Utilities",
+   "group": "Defensive"
+  }
+ }
+}

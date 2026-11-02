@@ -1,0 +1,330 @@
+<title>Sector Rotation Engine</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="A 30 to 90 day market direction and sector rotation model, with daily-refreshing dashboard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single reading column (about 68ch) that widens for data tables; each section is a band on a ledger-ruled page. */
+:root {
+  --bg: #f5f7f9; --surface: #ffffff; --ink: #101b2b; --muted: #4a5868; --rule: #d5dde6;
+  --accent: #0b6e77; --accent-ink: #ffffff; --pos: #17703f; --neg: #b3261e; --warn: #8a5a00;
+  --pos-bg: #e3f3ea; --neg-bg: #fbe7e5; --warn-bg: #fdf1d8; --info-bg: #e2f1f8; --info: #145a80;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --s1: .875rem; --s2: 1rem; --s3: 1.25rem; --s4: 1.75rem; --s5: clamp(2.4rem, 6vw, 4rem);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1220; --surface: #121b2c; --ink: #e8eef6; --muted: #a3b1c2; --rule: #263248;
+  --accent: #5cc6cf; --accent-ink: #062126; --pos: #5fd38f; --neg: #ff8a80; --warn: #f2c45a;
+  --pos-bg: #12301f; --neg-bg: #3a1714; --warn-bg: #362a0c; --info-bg: #0f2a3a; --info: #8fcdf0; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b1220; --surface: #121b2c; --ink: #e8eef6; --muted: #a3b1c2; --rule: #263248;
+  --accent: #5cc6cf; --accent-ink: #062126; --pos: #5fd38f; --neg: #ff8a80; --warn: #f2c45a;
+  --pos-bg: #12301f; --neg-bg: #3a1714; --warn-bg: #362a0c; --info-bg: #0f2a3a; --info: #8fcdf0; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 400 var(--s2)/1.6 var(--body); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.prose { max-width: 68ch }
+h1, h2, h3, h4 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0 }
+h2 { font-size: var(--s4); font-weight: 750; font-stretch: 85%; }
+h3 { font-size: var(--s3); font-weight: 700; font-stretch: 90%; margin-top: 1.75rem }
+h4 { font-size: var(--s2); font-weight: 700 }
+p { margin: .6rem 0 }
+a { color: var(--accent); text-underline-offset: 3px }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px }
+.num, td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.pos { color: var(--pos) } .neg { color: var(--neg) } .muted { color: var(--muted) }
+.tk { font-family: var(--mono); font-weight: 500; letter-spacing: .02em }
+.eyebrow { font: 500 .75rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted) }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap }
+.skip { position: absolute; left: 16px; top: -60px; background: var(--accent); color: var(--accent-ink); padding: .6rem 1rem; border-radius: 6px; font-weight: 600; z-index: 20 }
+.skip:focus { top: calc(env(safe-area-inset-top, 0px) + 8px) }
+
+/* header */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface) }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--surface); border-bottom: 1px solid var(--rule) }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .7rem; flex-wrap: wrap }
+.brand { font: 750 1.05rem/1 var(--display); font-stretch: 80%; letter-spacing: .02em; text-transform: uppercase; color: var(--ink); text-decoration: none }
+.top nav ul { display: flex; gap: .25rem 1rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap }
+.top nav a { color: var(--muted); text-decoration: none; font-size: var(--s1); font-weight: 500; padding: .3rem 0 }
+.top nav a:hover { color: var(--ink); text-decoration: underline }
+
+/* hero: the live call is the thesis */
+.hero { padding-block: clamp(2.5rem, 7vw, 5rem) 2.5rem; border-bottom: 1px solid var(--rule) }
+.hero h1 { font-size: var(--s5); font-weight: 800; font-stretch: 75%; letter-spacing: -.01em; text-transform: uppercase; margin-top: .8rem }
+.lede { font-size: var(--s3); color: var(--muted); max-width: 54ch; line-height: 1.5 }
+.call { margin-top: 2rem; display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden }
+.call > div { background: var(--surface); padding: 1rem 1.1rem; min-width: 0 }
+.call .big { font: 500 2.4rem/1 var(--mono); margin-top: .35rem }
+.tag { display: inline-block; font: 600 .8rem/1 var(--body); padding: .35rem .6rem; border-radius: 4px; border: 1px solid currentColor }
+.tag.bullish { color: var(--pos); background: var(--pos-bg) } .tag.bearish { color: var(--neg); background: var(--neg-bg) } .tag.neutral { color: var(--warn); background: var(--warn-bg) }
+.scale { margin-top: .9rem; position: relative; height: 10px; border-radius: 5px; background: linear-gradient(90deg, var(--neg) 0 40%, var(--warn) 40% 60%, var(--pos) 60% 100%); opacity: .85 }
+.scale i { position: absolute; top: -4px; width: 4px; height: 18px; background: var(--ink); border-radius: 2px; transform: translateX(-2px) }
+.scale-l { display: flex; justify-content: space-between; font: .7rem var(--mono); color: var(--muted); margin-top: .3rem }
+.small { font-size: var(--s1); color: var(--muted) }
+.cta { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.75rem }
+.btn { display: inline-flex; align-items: center; gap: .5rem; font-weight: 600; text-decoration: none; padding: .7rem 1.1rem; border-radius: 8px; border: 1px solid var(--accent) }
+.btn.primary { background: var(--accent); color: var(--accent-ink) }
+.btn.ghost { color: var(--accent) }
+.notice { background: var(--warn-bg); color: var(--ink); border: 1px solid var(--warn); border-radius: 8px; padding: .8rem 1rem; max-width: 80ch; font-size: var(--s1) }
+
+/* sections */
+section.band { padding-block: 3rem; border-bottom: 1px solid var(--rule) }
+.head { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 1rem; align-items: baseline; margin-bottom: 1.25rem }
+.head .eyebrow { padding-top: .45rem }
+@media (max-width: 640px) { .head { grid-template-columns: 1fr; gap: .4rem } .call { grid-template-columns: 1fr 1fr } .call > div:first-child { grid-column: 1 / -1 } }
+
+blockquote.brief { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1.25rem 1.4rem; font-size: var(--s1); line-height: 1.65 }
+blockquote.brief ol { padding-left: 1.2rem; margin: .5rem 0 0 }
+blockquote.brief li { margin: .5rem 0 }
+blockquote.brief li ul { margin: .25rem 0; padding-left: 1.1rem }
+
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 1.5rem }
+.steps > li { display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 1rem }
+.steps > li::before { counter-increment: s; content: "0" counter(s); font: 500 1.6rem/1 var(--mono); color: var(--accent) }
+@media (max-width: 640px) { .steps > li { grid-template-columns: 1fr; gap: .3rem } }
+pre { font: .8rem/1.6 var(--mono); background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: .9rem 1rem; overflow-x: auto; margin: .8rem 0 }
+
+.factors { list-style: none; padding: 0; margin: 0; display: grid; gap: .65rem }
+.factors li { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr) 3.2rem; grid-template-areas: "n b v" ". d d"; gap: .1rem .9rem; align-items: center }
+.fname { grid-area: n; font-weight: 600; font-size: var(--s1) } .bar { grid-area: b } .factors .num { grid-area: v; text-align: right; font-size: var(--s1) }
+.fdetail { grid-area: d; font-size: .8rem; color: var(--muted) }
+.bar { position: relative; height: 8px; background: var(--rule); border-radius: 4px }
+.bar::after { content: ""; position: absolute; left: 50%; top: -3px; bottom: -3px; width: 1px; background: var(--muted) }
+.bar i { position: absolute; top: 0; bottom: 0; width: var(--w); border-radius: 4px }
+.bar i.pos { left: 50%; background: var(--pos) } .bar i.neg { right: 50%; background: var(--neg) }
+@media (max-width: 520px) { .factors li { grid-template-columns: minmax(0, 1fr) 3.2rem; grid-template-areas: "n v" "b b" "d d" } }
+
+.tablebox { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface) }
+table { border-collapse: collapse; width: 100%; font-size: var(--s1) }
+caption { text-align: left; padding: .8rem 1rem; color: var(--muted); font-size: .8rem; caption-side: top }
+th, td { padding: .55rem 1rem; text-align: left; border-top: 1px solid var(--rule); white-space: nowrap }
+thead th { font: 500 .72rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-top: 0 }
+tbody th { font-weight: 500 }
+td.num, th.num { text-align: right }
+.phase { font-size: .78rem; font-weight: 600; padding: .15rem .45rem; border-radius: 4px }
+.phase.leading { background: var(--pos-bg); color: var(--pos) } .phase.lagging { background: var(--neg-bg); color: var(--neg) }
+.phase.weakening { background: var(--warn-bg); color: var(--warn) } .phase.improving { background: var(--info-bg); color: var(--info) }
+
+.ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem }
+.idea { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem; min-width: 0 }
+.idea.hedge { border-style: dashed }
+.idea header { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem }
+.idea .side { font: 500 .72rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted) }
+.idea p { font-size: .82rem; color: var(--muted) }
+.idea dl { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: .6rem 0 0 }
+.idea dt { font: 500 .68rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted) }
+.idea dd { margin: 0; font-size: .9rem }
+
+.clock { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; max-width: 640px }
+.q { background: var(--surface); padding: 1rem; min-width: 0 }
+.q h4 { font-stretch: 85%; text-transform: uppercase; letter-spacing: .04em; font-size: .9rem }
+.q.leading h4 { color: var(--pos) } .q.lagging h4 { color: var(--neg) } .q.weakening h4 { color: var(--warn) } .q.improving h4 { color: var(--info) }
+.q p { font-size: .78rem; color: var(--muted); margin: .2rem 0 .6rem }
+.members { display: flex; flex-wrap: wrap; gap: .35rem .7rem }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-bottom: 1.25rem }
+.stats div { background: var(--surface); padding: .9rem 1rem }
+.stats dt { font-size: .78rem; color: var(--muted) } .stats dd { margin: .2rem 0 0; font: 500 1.35rem var(--mono) }
+.stats { margin-top: 0 }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; align-items: start }
+@media (max-width: 820px) { .split { grid-template-columns: 1fr } }
+
+footer.foot { padding-block: 2rem 3rem; color: var(--muted); font-size: .8rem }
+@media (prefers-reduced-motion: no-preference) { .scale i { transition: left .6s ease } html { scroll-behavior: smooth } }
+</style>
+
+<a class="skip" href="#main">Skip to main content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#main">Sector Rotation Engine</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#brief">Brief</a></li>
+        <li><a href="#framework">Framework</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#backtest">Backtest</a></li>
+        <li><a href="#run">Run it</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">30–90 day outlook · S&amp;P 500 and 11 sector ETFs</p>
+      <h1>Where the market is leaning, and which sectors lead</h1>
+      <p class="lede">A rules-based model that reads trend, breadth, credit and volatility each evening, scores the market's direction for the next one to three months, and ranks the eleven SPDR sectors.</p>
+      <p class='notice' role='note'><strong>These are sample results.</strong> They were produced by running the engine on synthetic prices so the layout can be reviewed. After the first scheduled run on GitHub, this page is rebuilt from real Yahoo Finance and FRED data.</p>
+      <div class="call" aria-label="Current model call">
+        <div>
+          <p class="eyebrow">Market bias · close of 2026-10-29</p>
+          <p style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin:.5rem 0 0">
+            <span class="tag bullish">Bullish</span><span class="big">+70.5</span><span class="small">on a −100 to +100 scale</span>
+          </p>
+          <div class="scale" role="meter" aria-label="Bias score" aria-valuemin="-100" aria-valuemax="100" aria-valuenow="+70.5"><i style="left:85.2%"></i></div>
+          <div class="scale-l" aria-hidden="true"><span>−100</span><span>−20</span><span>+20</span><span>+100</span></div>
+        </div>
+        <div><p class="eyebrow">Model confidence</p><p class="big">100</p><p class="small">100% of factor weight agrees</p></div>
+        <div><p class="eyebrow">Historical hit rate</p><p class="big">61%</p><p class="small">63-day calls in range 40 and above, n=53</p></div>
+        <div><p class="eyebrow">SPY 30D / 90D</p><p class="big" style="font-size:1.5rem">+7.2%</p><p class="small">+8.5% over 90 days</p></div>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="dashboard.html">Open the live dashboard</a>
+        <a class="btn ghost" href="#framework">Read the framework</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="band" id="brief" aria-labelledby="brief-h">
+    <div class="wrap">
+      <div class="head"><p class="eyebrow">The brief</p><h2 id="brief-h">What the project set out to build</h2></div>
+      <blockquote class="brief">
+        <p><strong>Role:</strong> expert quantitative trader, software architect and full-stack developer.</p>
+        <p><strong>Task:</strong> design a technical and operational framework for a web application that predicts 30–90 day overall market direction and identifies top-performing sectors, using the supplied Python relative-strength script and React dashboard.</p>
+        <ol>
+          <li><strong>Core strategy and methodology.</strong> Identify the indicators, datasets, macro drivers and technical rules, and turn them into quantifiable formulas for automated signals.</li>
+          <li><strong>Data pipeline and daily refresh.</strong> Specify data sources and APIs for index prices, sector ETFs, breadth and macro data, and an automated daily architecture to ingest closes, run the model and refresh the dashboard.</li>
+          <li><strong>Prediction engine.</strong>
+            <ul>
+              <li>Broad market direction: a 30–90 day Bullish / Neutral / Bearish bias with a quantitative confidence score.</li>
+              <li>Sector rotation ranking: relative strength, momentum and macro alignment.</li>
+              <li>Trade setups: top three long sectors, defensive hedges and key pivot levels.</li>
+            </ul>
+          </li>
+          <li><strong>Web application.</strong> Core pages such as an executive summary, sector heatmap and backtest accuracy tracker, with the metrics and charts needed for at-a-glance decisions.</li>
+        </ol>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="band" id="framework" aria-labelledby="fw-h">
+    <div class="wrap">
+      <div class="head"><p class="eyebrow">Framework</p><h2 id="fw-h">How it works, in four parts</h2></div>
+      <ol class="steps">
+        <li><div class="prose">
+          <h3 style="margin-top:0">Strategy and methodology</h3>
+          <p>The supplied script ranks sectors by their return in excess of SPY over 21 and 63 trading days. That score is kept as written. The engine adds a market-direction model built from seven factors, each scaled to −1…+1 with a tanh function so no single extreme reading dominates.</p>
+          <pre aria-label="Relative strength formula">RS_n(i)      = R_n(i) − R_n(SPY)          n = 21, 63 trading days
+Composite(i) = 0.40 · RS_21 + 0.60 · RS_63</pre>
+          <p>Factors and weights: trend 20%, breadth 20%, momentum 15%, risk appetite (cyclicals minus defensives) 15%, credit (HYG vs IEF) 15%, volatility (VIX level and term structure) 10%, financial conditions (Chicago Fed NFCI) 5%.</p>
+        </div></li>
+        <li><div class="prose">
+          <h3 style="margin-top:0">Data pipeline and daily refresh</h3>
+          <p>Prices come from Yahoo Finance through yfinance: SPY, the 11 sector ETFs, RSP, HYG, IEF, VIX and VIX3M. The NFCI comes from FRED's public CSV with no API key. Polygon, Alpaca or Tiingo can replace Yahoo by changing one function.</p>
+          <p>A GitHub Actions job runs at 21:45 UTC every weekday, after the close. It computes the signals, reruns the backtest, logs the day's call, commits the data, and redeploys the site to GitHub Pages. If the price download fails, nothing is overwritten and the dashboard flags the data as stale.</p>
+        </div></li>
+        <li><div class="prose">
+          <h3 style="margin-top:0">Prediction engine</h3>
+          <pre aria-label="Bias and sector score formulas">BiasScore   = 100 · Σ wₖ·fₖ / Σ wₖ     Bullish ≥ +20 · Bearish ≤ −20
+Confidence  = 0.55 · strength + 0.45 · factor agreement
+SectorScore = 0.45·z(Composite) + 0.20·z(RS/vol) + 0.20·Trend + 0.225·RegimeFit</pre>
+          <p>Trade setups take the top three sectors that are not in a downtrend, set entries near the 20-day average, stops at two times the 14-day ATR, and targets at the larger of the monthly pivot R1 or three ATRs. The hedge is the strongest defensive sector in Neutral or Bearish regimes, or the weakest sector as an underweight when Bullish.</p>
+        </div></li>
+        <li><div class="prose">
+          <h3 style="margin-top:0">Web application</h3>
+          <p>Six views: Summary (bias, confidence, factor drivers, six-month history, trade setups, SPY levels), Leaderboard (the original sortable table with a live 30/90 weight slider), Rotation (quadrant scatter), Heatmap, Backtest (hit rates, equity curve, calibration and a live track record), and Methodology.</p>
+        </div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="results" aria-labelledby="res-h">
+    <div class="wrap">
+      <div class="head"><p class="eyebrow">Results</p><h2 id="res-h">Today's model output</h2></div>
+      <div class="split">
+        <div>
+          <h3 style="margin-top:0">What is driving the bias</h3>
+          <p class="small">Points each factor adds to or subtracts from the score.</p>
+          <ul class="factors"><li><span class='fname'>Credit</span><span class='bar' aria-hidden='true'><i class='pos' style='--w:49%'></i></span><span class='num pos'>+14.8</span><span class='fdetail'>HYG/IEF +6.4% (63d)</span></li>
+<li><span class='fname'>Momentum</span><span class='bar' aria-hidden='true'><i class='pos' style='--w:46%'></i></span><span class='num pos'>+13.9</span><span class='fdetail'>SPY +7.2% (21d), +8.5% (63d)</span></li>
+<li><span class='fname'>Risk appetite</span><span class='bar' aria-hidden='true'><i class='pos' style='--w:42%'></i></span><span class='num pos'>+12.6</span><span class='fdetail'>Cyclicals minus defensives +4.9% (63d)</span></li>
+<li><span class='fname'>Breadth</span><span class='bar' aria-hidden='true'><i class='pos' style='--w:31%'></i></span><span class='num pos'>+12.2</span><span class='fdetail'>91% of sectors above 50-day, 100% up over 63d; RSP vs SPY +0.1%</span></li>
+<li><span class='fname'>Volatility</span><span class='bar' aria-hidden='true'><i class='pos' style='--w:41%'></i></span><span class='num pos'>+8.3</span><span class='fdetail'>VIX 13.2; VIX3M/VIX 1.10</span></li>
+<li><span class='fname'>Trend</span><span class='bar' aria-hidden='true'><i class='pos' style='--w:17%'></i></span><span class='num pos'>+6.7</span><span class='fdetail'>SPY +7.5% vs 200-day; 50-day slope -0.6%/mo</span></li>
+<li><span class='fname'>Financial conditions</span><span class='bar' aria-hidden='true'><i class='pos' style='--w:20%'></i></span><span class='num pos'>+1.9</span><span class='fdetail'>NFCI -0.56, 13-week change +0.01</span></li></ul>
+        </div>
+        <div>
+          <h3 style="margin-top:0">Rotation phases</h3>
+          <p class="small">Sectors tend to move clockwise: Improving, Leading, Weakening, Lagging.</p>
+          <div class="clock"><div class='q improving'><h4>Improving</h4><p>Weak over 90 days, turning up</p><div class='members'><span class='tk'>XLK</span></div></div><div class='q leading'><h4>Leading</h4><p>Strong on both horizons</p><div class='members'><span class='tk'>XLI</span> <span class='tk'>XLRE</span> <span class='tk'>XLC</span> <span class='tk'>XLV</span> <span class='tk'>XLY</span></div></div><div class='q lagging'><h4>Lagging</h4><p>Weak on both horizons</p><div class='members'><span class='tk'>XLF</span> <span class='tk'>XLB</span> <span class='tk'>XLE</span> <span class='tk'>XLU</span> <span class='tk'>XLP</span></div></div><div class='q weakening'><h4>Weakening</h4><p>Strong over 90 days, fading</p><div class='members'><span class='muted'>none</span></div></div></div>
+        </div>
+      </div>
+
+      <h3>Trade setups</h3>
+      <div class="ideas"><article class='idea'><header><h4><span class='tk'>XLI</span> Industrials</h4><span class='side'>Long</span></header><p>Rank #1, leading, +16.8% vs SPY over 90d</p><dl><div><dt>Entry</dt><dd class='num'>137.57–140.91</dd></div><div><dt>Stop</dt><dd class='num'>134.23</dd></div><div><dt>Target</dt><dd class='num'>150.93</dd></div><div><dt>Reward : risk</dt><dd class='num'>1.5</dd></div></dl></article>
+<article class='idea'><header><h4><span class='tk'>XLRE</span> Real Estate</h4><span class='side'>Long</span></header><p>Rank #2, leading, +15.7% vs SPY over 90d</p><dl><div><dt>Entry</dt><dd class='num'>43.66–44.63</dd></div><div><dt>Stop</dt><dd class='num'>42.69</dd></div><div><dt>Target</dt><dd class='num'>47.54</dd></div><div><dt>Reward : risk</dt><dd class='num'>1.5</dd></div></dl></article>
+<article class='idea'><header><h4><span class='tk'>XLC</span> Communication Services</h4><span class='side'>Long</span></header><p>Rank #3, leading, +9.3% vs SPY over 90d</p><dl><div><dt>Entry</dt><dd class='num'>105.16–107.70</dd></div><div><dt>Stop</dt><dd class='num'>102.62</dd></div><div><dt>Target</dt><dd class='num'>115.32</dd></div><div><dt>Reward : risk</dt><dd class='num'>1.5</dd></div></dl></article><article class='idea hedge'><header><h4><span class='tk'>XLP</span> Consumer Staples</h4><span class='side'>Hedge · Underweight</span></header><p>Weakest sector (rank #11); funding source or pair-trade short</p><dl><div><dt>Entry</dt><dd class='num'>77.01–75.30</dd></div><div><dt>Stop</dt><dd class='num'>79.71</dd></div><div><dt>Target</dt><dd class='num'>72.96</dd></div><div><dt>Reward : risk</dt><dd class='num'>1.5</dd></div></dl></article></div>
+
+      <h3>Sector ranking</h3>
+      <div class="tablebox">
+        <table>
+          <caption>Eleven SPDR sector ETFs ranked by engine score, close of 2026-10-29</caption>
+          <thead><tr><th scope="col" class="num">Rank</th><th scope="col">Sector</th><th scope="col">Group</th><th scope="col" class="num">90D return</th><th scope="col" class="num">vs SPY 90D</th><th scope="col" class="num">Score</th><th scope="col">Phase</th></tr></thead>
+          <tbody><tr><td class='num'>1</td><th scope='row'><span class='tk'>XLI</span> Industrials</th><td>Sensitive</td><td class='num pos'>+25.3%</td><td class='num pos'>+16.8%</td><td class='num pos'>+1.42</td><td><span class='phase leading'>Leading</span></td></tr>
+<tr><td class='num'>2</td><th scope='row'><span class='tk'>XLRE</span> Real Estate</th><td>Cyclical</td><td class='num pos'>+24.2%</td><td class='num pos'>+15.7%</td><td class='num pos'>+1.36</td><td><span class='phase leading'>Leading</span></td></tr>
+<tr><td class='num'>3</td><th scope='row'><span class='tk'>XLC</span> Communication Services</th><td>Sensitive</td><td class='num pos'>+17.8%</td><td class='num pos'>+9.3%</td><td class='num pos'>+0.83</td><td><span class='phase leading'>Leading</span></td></tr>
+<tr><td class='num'>4</td><th scope='row'><span class='tk'>XLV</span> Health Care</th><td>Defensive</td><td class='num pos'>+14.6%</td><td class='num pos'>+6.1%</td><td class='num pos'>+0.48</td><td><span class='phase leading'>Leading</span></td></tr>
+<tr><td class='num'>5</td><th scope='row'><span class='tk'>XLY</span> Consumer Discretionary</th><td>Cyclical</td><td class='num pos'>+10.1%</td><td class='num pos'>+1.6%</td><td class='num pos'>+0.26</td><td><span class='phase leading'>Leading</span></td></tr>
+<tr><td class='num'>6</td><th scope='row'><span class='tk'>XLF</span> Financials</th><td>Cyclical</td><td class='num pos'>+7.3%</td><td class='num neg'>-1.2%</td><td class='num pos'>+0.01</td><td><span class='phase lagging'>Lagging</span></td></tr>
+<tr><td class='num'>7</td><th scope='row'><span class='tk'>XLK</span> Technology</th><td>Sensitive</td><td class='num pos'>+7.5%</td><td class='num neg'>-1.0%</td><td class='num '>-0.00</td><td><span class='phase improving'>Improving</span></td></tr>
+<tr><td class='num'>8</td><th scope='row'><span class='tk'>XLB</span> Materials</th><td>Cyclical</td><td class='num pos'>+8.2%</td><td class='num neg'>-0.3%</td><td class='num neg'>-0.17</td><td><span class='phase lagging'>Lagging</span></td></tr>
+<tr><td class='num'>9</td><th scope='row'><span class='tk'>XLE</span> Energy</th><td>Sensitive</td><td class='num pos'>+4.3%</td><td class='num neg'>-4.2%</td><td class='num neg'>-0.48</td><td><span class='phase lagging'>Lagging</span></td></tr>
+<tr><td class='num'>10</td><th scope='row'><span class='tk'>XLU</span> Utilities</th><td>Defensive</td><td class='num pos'>+6.3%</td><td class='num neg'>-2.2%</td><td class='num neg'>-0.70</td><td><span class='phase lagging'>Lagging</span></td></tr>
+<tr><td class='num'>11</td><th scope='row'><span class='tk'>XLP</span> Consumer Staples</th><td>Defensive</td><td class='num pos'>+1.6%</td><td class='num neg'>-6.8%</td><td class='num neg'>-1.18</td><td><span class='phase lagging'>Lagging</span></td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="backtest" aria-labelledby="bt-h">
+    <div class="wrap">
+      <div class="head"><p class="eyebrow">Backtest</p><h2 id="bt-h">How the signals held up</h2></div>
+      <p class="small">Walk-forward, monthly, 2017-11-30 to 2026-09-30 (107 months). No costs or taxes.</p>
+      <dl class="stats">
+        <div><dt>Bias hit rate, 21 days</dt><dd>57.6%</dd></div>
+        <div><dt>Bias hit rate, 63 days</dt><dd>59.0%</dd></div>
+        <div><dt>Top 3 vs SPY, per month</dt><dd>+0.04%</dd></div>
+        <div><dt>Top 3 beat SPY</dt><dd>46% of months</dd></div>
+        <div><dt>Top 3 minus bottom 3</dt><dd>+0.43%</dd></div>
+        <div><dt>CAGR top 3 / SPY</dt><dd>1.7% / 1.0%</dd></div>
+      </dl>
+      <div class="tablebox" style="max-width:720px">
+        <table>
+          <caption>What SPY did after each range of bias score</caption>
+          <thead><tr><th scope="col">Score range</th><th scope="col" class="num">Months</th><th scope="col" class="num">Up after 21d</th><th scope="col" class="num">Up after 63d</th><th scope="col" class="num">Avg 63d</th></tr></thead>
+          <tbody><tr><th scope='row'>below -40</th><td class='num'>22</td><td class='num'>36%</td><td class='num'>41%</td><td class='num neg'>-2.77%</td></tr>
+<tr><th scope='row'>-40 to -20</th><td class='num'>5</td><td class='num'>60%</td><td class='num'>60%</td><td class='num pos'>+1.42%</td></tr>
+<tr><th scope='row'>-20 to 0</th><td class='num'>12</td><td class='num'>83%</td><td class='num'>75%</td><td class='num pos'>+0.24%</td></tr>
+<tr><th scope='row'>0 to 20</th><td class='num'>10</td><td class='num'>60%</td><td class='num'>70%</td><td class='num pos'>+1.05%</td></tr>
+<tr><th scope='row'>20 to 40</th><td class='num'>5</td><td class='num'>40%</td><td class='num'>60%</td><td class='num pos'>+0.74%</td></tr>
+<tr><th scope='row'>40 and above</th><td class='num'>53</td><td class='num'>58%</td><td class='num'>61%</td><td class='num pos'>+2.85%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="run" aria-labelledby="run-h">
+    <div class="wrap">
+      <div class="head"><p class="eyebrow">Run it</p><h2 id="run-h">Put it on a daily schedule</h2></div>
+      <ol class="steps">
+        <li><p class="prose">Create a GitHub repository and push the project folder to it.</p></li>
+        <li><p class="prose">In the repository, open <strong>Settings → Pages</strong> and set the source to <strong>GitHub Actions</strong>.</p></li>
+        <li><p class="prose">Open <strong>Actions → Daily refresh → Run workflow</strong> for the first run. After that it runs every weekday after the close.</p></li>
+        <li><p class="prose">Visit <span class="tk">https://&lt;your-user&gt;.github.io/&lt;repo&gt;/</span>. Swap Yahoo for a licensed feed before showing it to clients.</p></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap prose">
+    <p>Model output for research and discussion only. Nothing here is a recommendation to buy or sell a security, and backtested or past results do not guarantee future returns.</p>
+  </div>
+</footer>
