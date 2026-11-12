@@ -8,3 +8,4 @@ date,score,label,confidence,top3,spy_close
 2026-11-09,-10.3,Neutral,42,"XLV,XLP,XLF",752.69
 2026-11-10,-7.3,Neutral,53,"XLV,XLP,XLF",749.92
 2026-11-11,2.2,Neutral,67,"XLV,XLP,XLF",759.81
+2026-11-12,-1.6,Neutral,69,"XLV,XLP,XLF",757.12
