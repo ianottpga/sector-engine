@@ -13,3 +13,4 @@ date,score,label,confidence,top3,spy_close
 2026-11-16,-16.5,Neutral,32,"XLV,XLP,XLF",739.95
 2026-11-17,-30.5,Bearish,62,"XLP,XLV,XLF",732.44
 2026-11-18,-31.6,Bearish,63,"XLP,XLV,XLU",730.2
+2026-11-19,-48.5,Bearish,78,"XLP,XLV,XLU",715.87
