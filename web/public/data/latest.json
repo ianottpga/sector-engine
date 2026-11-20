@@ -1,52 +1,52 @@
 {
- "asOf": "2026-11-19",
+ "asOf": "2026-11-20",
  "bias": {
-  "score": -48.5,
+  "score": -65.7,
   "label": "Bearish",
-  "confidence": 78,
-  "agreement": 0.75,
+  "confidence": 98,
+  "agreement": 0.95,
   "factors": [
    {
     "key": "trend",
-    "reading": -0.41,
+    "reading": -0.66,
     "weight": 0.2,
-    "contribution": -8.2,
-    "detail": "SPY -2.0% vs 200-day; 50-day slope -0.8%/mo"
+    "contribution": -13.2,
+    "detail": "SPY -5.5% vs 200-day; 50-day slope -0.9%/mo"
    },
    {
     "key": "momentum",
-    "reading": -0.863,
+    "reading": -0.949,
     "weight": 0.15,
-    "contribution": -12.9,
-    "detail": "SPY -7.4% (21d), -6.3% (63d)"
+    "contribution": -14.2,
+    "detail": "SPY -9.7% (21d), -9.4% (63d)"
    },
    {
     "key": "breadth",
-    "reading": 0.02,
+    "reading": -0.202,
     "weight": 0.2,
-    "contribution": 0.4,
-    "detail": "45% of sectors above 50-day, 27% up over 63d; RSP vs SPY +2.1%"
+    "contribution": -4.0,
+    "detail": "20% of sectors above 50-day, 10% up over 63d; RSP vs SPY +3.2%"
    },
    {
     "key": "risk_appetite",
-    "reading": -0.936,
+    "reading": -0.943,
     "weight": 0.15,
-    "contribution": -14.0,
-    "detail": "Cyclicals minus defensives -6.8% (63d)"
+    "contribution": -14.1,
+    "detail": "Cyclicals minus defensives -7.1% (63d)"
    },
    {
     "key": "volatility",
-    "reading": -0.719,
+    "reading": -0.964,
     "weight": 0.1,
-    "contribution": -7.2,
-    "detail": "VIX 28.4; VIX3M/VIX 0.95"
+    "contribution": -9.6,
+    "detail": "VIX 35.9; VIX3M/VIX 0.86"
    },
    {
     "key": "credit",
-    "reading": -0.475,
+    "reading": -0.736,
     "weight": 0.15,
-    "contribution": -7.1,
-    "detail": "HYG/IEF -1.3% (63d)"
+    "contribution": -11.0,
+    "detail": "HYG/IEF -2.4% (63d)"
    },
    {
     "key": "financial_conditions",
@@ -65,262 +65,218 @@
  },
  "benchmark": {
   "ticker": "SPY",
-  "ret30": -7.4,
-  "ret90": -6.28,
+  "ret30": -9.71,
+  "ret90": -9.42,
   "levels": {
-   "last": 715.87,
-   "atr14": 14.7,
-   "sma20": 751.32,
-   "sma50": 761.48,
-   "sma200": 730.2,
-   "pivot": 735.72,
-   "r1": 755.79,
-   "s1": 695.8,
+   "last": 689.81,
+   "atr14": 16.07,
+   "sma20": 747.81,
+   "sma50": 760.03,
+   "sma200": 730.29,
+   "pivot": 717.4,
+   "r1": 748.05,
+   "s1": 659.16,
    "high63": 781.62,
-   "low63": 715.65
+   "low63": 686.75
   }
  },
  "sectors": [
   {
-   "ticker": "XLP",
-   "name": "Consumer Staples",
-   "group": "Defensive",
-   "ret30": 3.16,
-   "ret90": 5.19,
-   "vsSpy30": 10.56,
-   "vsSpy90": 11.47,
-   "composite": 11.103,
-   "volatility": 18.0,
-   "riskAdjusted": 2.55,
-   "trend": 1.0,
-   "regimeFit": 0.48,
-   "score": 1.39,
-   "quadrant": "Leading",
-   "rank": 1
-  },
-  {
    "ticker": "XLV",
    "name": "Health Care",
    "group": "Defensive",
-   "ret30": -0.83,
-   "ret90": 2.02,
-   "vsSpy30": 6.57,
-   "vsSpy90": 8.29,
-   "composite": 7.606,
+   "ret30": -2.24,
+   "ret90": 1.84,
+   "vsSpy30": 7.47,
+   "vsSpy90": 11.27,
+   "composite": 9.746,
    "volatility": 18.3,
-   "riskAdjusted": 1.81,
+   "riskAdjusted": 2.46,
    "trend": 1.0,
-   "regimeFit": 0.48,
-   "score": 0.928,
+   "regimeFit": 0.66,
+   "score": 1.276,
    "quadrant": "Leading",
-   "rank": 2
+   "rank": 1
   },
   {
    "ticker": "XLU",
    "name": "Utilities",
    "group": "Defensive",
-   "ret30": 2.4,
-   "ret90": 1.3,
-   "vsSpy30": 9.81,
-   "vsSpy90": 7.58,
-   "composite": 8.47,
+   "ret30": -0.42,
+   "ret90": -0.5,
+   "vsSpy30": 9.29,
+   "vsSpy90": 8.92,
+   "composite": 9.069,
    "volatility": 15.3,
-   "riskAdjusted": 1.98,
+   "riskAdjusted": 2.34,
    "trend": 0.0,
-   "regimeFit": 0.48,
-   "score": 0.839,
+   "regimeFit": 0.66,
+   "score": 0.993,
    "quadrant": "Leading",
-   "rank": 3
-  },
-  {
-   "ticker": "XLY",
-   "name": "Consumer Discretionary",
-   "group": "Cyclical",
-   "ret30": 0.3,
-   "ret90": -1.6,
-   "vsSpy30": 7.7,
-   "vsSpy90": 4.68,
-   "composite": 5.89,
-   "volatility": 20.7,
-   "riskAdjusted": 0.91,
-   "trend": 0.0,
-   "regimeFit": -0.48,
-   "score": 0.183,
-   "quadrant": "Leading",
-   "rank": 4
+   "rank": 2
   },
   {
    "ticker": "XLF",
    "name": "Financials",
    "group": "Cyclical",
-   "ret30": -0.82,
-   "ret90": -2.96,
-   "vsSpy30": 6.58,
-   "vsSpy90": 3.31,
-   "composite": 4.621,
-   "volatility": 16.9,
-   "riskAdjusted": 0.78,
+   "ret30": -3.67,
+   "ret90": -5.94,
+   "vsSpy30": 6.03,
+   "vsSpy90": 3.49,
+   "composite": 4.505,
+   "volatility": 17.1,
+   "riskAdjusted": 0.82,
    "trend": 0.0,
-   "regimeFit": -0.48,
-   "score": 0.043,
+   "regimeFit": -0.66,
+   "score": 0.001,
    "quadrant": "Leading",
-   "rank": 5
+   "rank": 3
   },
   {
    "ticker": "XLRE",
    "name": "Real Estate",
    "group": "Cyclical",
-   "ret30": 1.95,
-   "ret90": -4.08,
-   "vsSpy30": 9.35,
-   "vsSpy90": 2.2,
-   "composite": 5.06,
+   "ret30": -0.14,
+   "ret90": -5.54,
+   "vsSpy30": 9.56,
+   "vsSpy90": 3.88,
+   "composite": 6.154,
    "volatility": 15.7,
-   "riskAdjusted": 0.56,
-   "trend": 0.0,
-   "regimeFit": -0.48,
-   "score": 0.042,
+   "riskAdjusted": 0.99,
+   "trend": -1.0,
+   "regimeFit": -0.66,
+   "score": -0.018,
    "quadrant": "Leading",
-   "rank": 6
+   "rank": 4
   },
   {
    "ticker": "XLE",
    "name": "Energy",
    "group": "Sensitive",
-   "ret30": -10.67,
-   "ret90": -3.75,
-   "vsSpy30": -3.26,
-   "vsSpy90": 2.53,
-   "composite": 0.21,
+   "ret30": -10.45,
+   "ret90": -3.55,
+   "vsSpy30": -0.74,
+   "vsSpy90": 5.87,
+   "composite": 3.227,
    "volatility": 24.9,
-   "riskAdjusted": 0.41,
+   "riskAdjusted": 0.94,
    "trend": 0.0,
-   "regimeFit": -0.36,
-   "score": -0.409,
+   "regimeFit": -0.49,
+   "score": -0.055,
    "quadrant": "Weakening",
-   "rank": 7
+   "rank": 5
+  },
+  {
+   "ticker": "XLY",
+   "name": "Consumer Discretionary",
+   "group": "Cyclical",
+   "ret30": -2.22,
+   "ret90": -4.73,
+   "vsSpy30": 7.49,
+   "vsSpy90": 4.7,
+   "composite": 5.813,
+   "volatility": 21.5,
+   "riskAdjusted": 0.87,
+   "trend": -1.0,
+   "regimeFit": -0.66,
+   "score": -0.07,
+   "quadrant": "Leading",
+   "rank": 6
   },
   {
    "ticker": "XLB",
    "name": "Materials",
    "group": "Cyclical",
-   "ret30": -3.7,
-   "ret90": -7.27,
-   "vsSpy30": 3.7,
-   "vsSpy90": -0.99,
-   "composite": 0.884,
-   "volatility": 16.7,
-   "riskAdjusted": -0.24,
+   "ret30": -6.48,
+   "ret90": -9.36,
+   "vsSpy30": 3.23,
+   "vsSpy90": 0.06,
+   "composite": 1.325,
+   "volatility": 17.2,
+   "riskAdjusted": 0.01,
    "trend": -1.0,
-   "regimeFit": -0.48,
-   "score": -0.693,
-   "quadrant": "Improving",
-   "rank": 8
+   "regimeFit": -0.66,
+   "score": -0.637,
+   "quadrant": "Leading",
+   "rank": 7
   },
   {
    "ticker": "XLC",
    "name": "Communication Services",
    "group": "Sensitive",
-   "ret30": -5.7,
-   "ret90": -7.45,
-   "vsSpy30": 1.7,
-   "vsSpy90": -1.17,
-   "composite": -0.023,
-   "volatility": 20.8,
+   "ret30": -6.88,
+   "ret90": -10.65,
+   "vsSpy30": 2.83,
+   "vsSpy90": -1.22,
+   "composite": 0.396,
+   "volatility": 21.3,
    "riskAdjusted": -0.23,
    "trend": -1.0,
-   "regimeFit": -0.36,
-   "score": -0.747,
+   "regimeFit": -0.49,
+   "score": -0.73,
    "quadrant": "Improving",
-   "rank": 9
+   "rank": 8
   },
   {
    "ticker": "XLI",
    "name": "Industrials",
    "group": "Sensitive",
-   "ret30": -4.13,
-   "ret90": -10.24,
-   "vsSpy30": 3.27,
-   "vsSpy90": -3.96,
-   "composite": -1.068,
-   "volatility": 18.2,
-   "riskAdjusted": -0.87,
+   "ret30": -6.21,
+   "ret90": -12.41,
+   "vsSpy30": 3.49,
+   "vsSpy90": -2.98,
+   "composite": -0.393,
+   "volatility": 19.1,
+   "riskAdjusted": -0.62,
    "trend": -1.0,
-   "regimeFit": -0.36,
-   "score": -0.964,
+   "regimeFit": -0.49,
+   "score": -0.875,
    "quadrant": "Improving",
-   "rank": 10
+   "rank": 9
   },
   {
    "ticker": "XLK",
    "name": "Technology",
    "group": "Sensitive",
-   "ret30": -14.77,
-   "ret90": -12.24,
-   "vsSpy30": -7.37,
-   "vsSpy90": -5.96,
-   "composite": -6.524,
-   "volatility": 31.1,
-   "riskAdjusted": -0.77,
+   "ret30": -18.28,
+   "ret90": -17.14,
+   "vsSpy30": -8.57,
+   "vsSpy90": -7.72,
+   "composite": -8.061,
+   "volatility": 34.1,
+   "riskAdjusted": -0.91,
    "trend": 0.0,
-   "regimeFit": -0.36,
-   "score": -1.25,
+   "regimeFit": -0.49,
+   "score": -1.423,
    "quadrant": "Lagging",
-   "rank": 11
+   "rank": 10
   }
  ],
  "ideas": {
   "longs": [
    {
-    "ticker": "XLP",
-    "name": "Consumer Staples",
-    "side": "Long",
-    "why": "Rank #1, leading, +11.5% vs SPY over 90d",
-    "score": 1.39,
-    "quadrant": "Leading",
-    "entry": [
-     90.14,
-     89.86
-    ],
-    "stop": 86.56,
-    "target": 94.81,
-    "rewardRisk": 1.5,
-    "levels": {
-     "last": 89.86,
-     "atr14": 1.65,
-     "sma20": 90.14,
-     "sma50": 86.19,
-     "sma200": 84.23,
-     "pivot": 89.9,
-     "r1": 93.44,
-     "s1": 86.32,
-     "high63": 93.48,
-     "low63": 80.1
-    }
-   },
-   {
     "ticker": "XLV",
     "name": "Health Care",
     "side": "Long",
-    "why": "Rank #2, leading, +8.3% vs SPY over 90d",
-    "score": 0.928,
+    "why": "Rank #1, leading, +11.3% vs SPY over 90d",
+    "score": 1.276,
     "quadrant": "Leading",
     "entry": [
-     184.45,
-     177.46
+     184.35,
+     177.24
     ],
-    "stop": 169.94,
-    "target": 188.74,
+    "stop": 169.48,
+    "target": 188.88,
     "rewardRisk": 1.5,
     "levels": {
-     "last": 177.46,
-     "atr14": 3.76,
-     "sma20": 184.45,
-     "sma50": 176.19,
-     "sma200": 159.89,
-     "pivot": 182.25,
-     "r1": 187.53,
-     "s1": 172.17,
+     "last": 177.24,
+     "atr14": 3.88,
+     "sma20": 184.35,
+     "sma50": 176.44,
+     "sma200": 160.02,
+     "pivot": 182.09,
+     "r1": 187.47,
+     "s1": 171.86,
      "high63": 192.32,
      "low63": 164.48
     }
@@ -329,55 +285,82 @@
     "ticker": "XLU",
     "name": "Utilities",
     "side": "Long",
-    "why": "Rank #3, leading, +7.6% vs SPY over 90d",
-    "score": 0.839,
+    "why": "Rank #2, leading, +8.9% vs SPY over 90d",
+    "score": 0.993,
     "quadrant": "Leading",
     "entry": [
-     43.37,
-     43.01
+     43.38,
+     42.69
     ],
-    "stop": 41.77,
-    "target": 44.87,
+    "stop": 41.41,
+    "target": 44.61,
     "rewardRisk": 1.5,
     "levels": {
-     "last": 43.01,
-     "atr14": 0.62,
-     "sma20": 43.37,
-     "sma50": 41.9,
+     "last": 42.69,
+     "atr14": 0.64,
+     "sma20": 43.38,
+     "sma50": 41.91,
      "sma200": 43.9,
-     "pivot": 43.14,
-     "r1": 44.27,
-     "s1": 41.88,
+     "pivot": 43.16,
+     "r1": 43.93,
+     "s1": 41.92,
      "high63": 44.4,
      "low63": 39.03
+    }
+   },
+   {
+    "ticker": "XLF",
+    "name": "Financials",
+    "side": "Long",
+    "why": "Rank #3, leading, +3.5% vs SPY over 90d",
+    "score": 0.001,
+    "quadrant": "Leading",
+    "entry": [
+     57.19,
+     54.57
+    ],
+    "stop": 52.33,
+    "target": 58.27,
+    "rewardRisk": 1.7,
+    "levels": {
+     "last": 54.57,
+     "atr14": 1.12,
+     "sma20": 57.19,
+     "sma50": 55.85,
+     "sma200": 53.75,
+     "pivot": 56.34,
+     "r1": 58.27,
+     "s1": 52.65,
+     "high63": 60.04,
+     "low63": 52.81
     }
    }
   ],
   "hedge": {
-   "ticker": "XLP",
-   "name": "Consumer Staples",
+   "ticker": "XLV",
+   "name": "Health Care",
    "side": "Long",
    "why": "Bearish regime: strongest defensive sector as ballast; consider trimming beta or an index hedge",
-   "score": 1.39,
+   "score": 1.276,
    "quadrant": "Leading",
    "entry": [
-    90.14,
-    89.86
+    184.35,
+    177.24
    ],
-   "stop": 86.56,
-   "target": 94.81,
+   "stop": 169.48,
+   "target": 188.88,
    "rewardRisk": 1.5,
    "levels": {
-    "last": 89.86,
-    "atr14": 1.65,
-    "sma20": 90.14,
-    "sma50": 86.19,
-    "sma200": 84.23,
-    "pivot": 89.9,
-    "r1": 93.44,
-    "s1": 86.32,
-    "high63": 93.48,
-    "low63": 80.1
+    "last": 177.24,
+    "atr14": 3.88,
+    "sma20": 184.35,
+    "sma50": 176.44,
+    "sma200": 160.02,
+    "pivot": 182.09,
+    "r1": 187.47,
+    "s1": 171.86,
+    "high63": 192.32,
+    "low63": 164.48
    }
   }
  },
@@ -389,423 +372,418 @@
  },
  "biasHistory": [
   {
-   "date": "2026-05-22",
-   "score": 65.5,
-   "spy": 741.88
-  },
-  {
    "date": "2026-05-26",
-   "score": 64.9,
+   "score": 64.8,
    "spy": 746.81
   },
   {
    "date": "2026-05-27",
-   "score": 64.4,
+   "score": 64.8,
    "spy": 746.68
   },
   {
    "date": "2026-05-28",
-   "score": 65.1,
+   "score": 65.4,
    "spy": 750.8
   },
   {
    "date": "2026-05-29",
-   "score": 67.1,
+   "score": 68.5,
    "spy": 752.67
   },
   {
    "date": "2026-06-01",
-   "score": 64.7,
+   "score": 66.2,
    "spy": 754.72
   },
   {
    "date": "2026-06-02",
-   "score": 64.1,
+   "score": 65.5,
    "spy": 755.74
   },
   {
    "date": "2026-06-03",
-   "score": 61.9,
+   "score": 63.5,
    "spy": 750.44
   },
   {
    "date": "2026-06-04",
-   "score": 67.3,
+   "score": 69.0,
    "spy": 753.27
   },
   {
    "date": "2026-06-05",
-   "score": 53.7,
+   "score": 54.0,
    "spy": 733.83
   },
   {
    "date": "2026-06-08",
-   "score": 59.4,
+   "score": 61.2,
    "spy": 735.49
   },
   {
    "date": "2026-06-09",
-   "score": 57.5,
+   "score": 58.0,
    "spy": 733.34
   },
   {
    "date": "2026-06-10",
-   "score": 46.4,
+   "score": 46.9,
    "spy": 721.77
   },
   {
    "date": "2026-06-11",
-   "score": 60.9,
+   "score": 60.6,
    "spy": 734.04
   },
   {
    "date": "2026-06-12",
-   "score": 65.7,
+   "score": 65.2,
    "spy": 738.01
   },
   {
    "date": "2026-06-15",
-   "score": 68.3,
+   "score": 67.8,
    "spy": 751.03
   },
   {
    "date": "2026-06-16",
-   "score": 67.7,
+   "score": 67.2,
    "spy": 746.55
   },
   {
    "date": "2026-06-17",
-   "score": 61.4,
+   "score": 60.8,
    "spy": 737.23
   },
   {
    "date": "2026-06-18",
-   "score": 64.1,
+   "score": 64.6,
    "spy": 744.89
   },
   {
    "date": "2026-06-22",
-   "score": 64.8,
+   "score": 65.2,
    "spy": 742.55
   },
   {
    "date": "2026-06-23",
-   "score": 57.0,
+   "score": 56.4,
    "spy": 731.76
   },
   {
    "date": "2026-06-24",
-   "score": 55.4,
+   "score": 55.2,
    "spy": 731.42
   },
   {
    "date": "2026-06-25",
-   "score": 53.9,
+   "score": 52.7,
    "spy": 732.48
   },
   {
    "date": "2026-06-26",
-   "score": 49.2,
+   "score": 47.2,
    "spy": 727.18
   },
   {
    "date": "2026-06-29",
-   "score": 57.1,
+   "score": 54.5,
    "spy": 739.16
   },
   {
    "date": "2026-06-30",
-   "score": 59.5,
+   "score": 58.6,
    "spy": 744.92
   },
   {
    "date": "2026-07-01",
-   "score": 58.6,
+   "score": 58.5,
    "spy": 743.91
   },
   {
    "date": "2026-07-02",
-   "score": 57.4,
+   "score": 56.2,
    "spy": 742.94
   },
   {
    "date": "2026-07-06",
-   "score": 63.6,
+   "score": 62.4,
    "spy": 749.42
   },
   {
    "date": "2026-07-07",
-   "score": 57.4,
+   "score": 54.0,
    "spy": 745.86
   },
   {
    "date": "2026-07-08",
-   "score": 56.6,
+   "score": 55.3,
    "spy": 743.55
   },
   {
    "date": "2026-07-09",
-   "score": 55.7,
+   "score": 54.0,
    "spy": 749.85
   },
   {
    "date": "2026-07-10",
-   "score": 59.7,
+   "score": 57.8,
    "spy": 753.08
   },
   {
    "date": "2026-07-13",
-   "score": 56.7,
+   "score": 55.1,
    "spy": 747.31
   },
   {
    "date": "2026-07-14",
-   "score": 52.0,
+   "score": 52.1,
    "spy": 749.97
   },
   {
    "date": "2026-07-15",
-   "score": 52.8,
+   "score": 54.2,
    "spy": 752.94
   },
   {
    "date": "2026-07-16",
-   "score": 45.6,
+   "score": 46.9,
    "spy": 748.86
   },
   {
    "date": "2026-07-17",
-   "score": 36.4,
+   "score": 36.6,
    "spy": 741.45
   },
   {
    "date": "2026-07-20",
-   "score": 37.9,
+   "score": 37.8,
    "spy": 740.25
   },
   {
    "date": "2026-07-21",
-   "score": 36.5,
+   "score": 34.7,
    "spy": 746.43
   },
   {
    "date": "2026-07-22",
-   "score": 36.8,
+   "score": 34.8,
    "spy": 745.56
   },
   {
    "date": "2026-07-23",
-   "score": 33.5,
+   "score": 32.8,
    "spy": 736.35
   },
   {
    "date": "2026-07-24",
-   "score": 39.8,
+   "score": 36.3,
    "spy": 737.1
   },
   {
    "date": "2026-07-27",
-   "score": 38.0,
+   "score": 35.2,
    "spy": 737.26
   },
   {
    "date": "2026-07-28",
-   "score": 39.3,
+   "score": 37.7,
    "spy": 739.02
   },
   {
    "date": "2026-07-29",
-   "score": 27.7,
+   "score": 26.2,
    "spy": 727.65
   },
   {
    "date": "2026-07-30",
-   "score": 39.0,
+   "score": 35.9,
    "spy": 739.85
   },
   {
    "date": "2026-07-31",
-   "score": 44.5,
+   "score": 41.3,
    "spy": 745.18
   },
   {
    "date": "2026-08-03",
-   "score": 53.1,
+   "score": 49.1,
    "spy": 755.79
   },
   {
    "date": "2026-08-04",
-   "score": 61.8,
+   "score": 59.9,
    "spy": 769.42
   },
   {
    "date": "2026-08-05",
-   "score": 61.7,
+   "score": 58.9,
    "spy": 767.88
   },
   {
    "date": "2026-08-06",
-   "score": 54.7,
+   "score": 50.9,
    "spy": 766.66
   },
   {
    "date": "2026-08-07",
-   "score": 59.6,
+   "score": 54.5,
    "spy": 771.34
   },
   {
    "date": "2026-08-10",
-   "score": 53.8,
+   "score": 47.7,
    "spy": 771.12
   },
   {
    "date": "2026-08-11",
-   "score": 50.8,
+   "score": 46.1,
    "spy": 768.65
   },
   {
    "date": "2026-08-12",
-   "score": 52.3,
+   "score": 46.8,
    "spy": 770.58
   },
   {
    "date": "2026-08-13",
-   "score": 54.9,
+   "score": 49.3,
    "spy": 775.95
   },
   {
    "date": "2026-08-14",
-   "score": 57.2,
+   "score": 51.1,
    "spy": 774.42
   },
   {
    "date": "2026-08-17",
-   "score": 59.4,
+   "score": 51.0,
    "spy": 770.76
   },
   {
    "date": "2026-08-18",
-   "score": 51.7,
+   "score": 44.4,
    "spy": 765.55
   },
   {
    "date": "2026-08-19",
-   "score": 54.6,
+   "score": 45.4,
    "spy": 767.15
   },
   {
    "date": "2026-08-20",
-   "score": 46.7,
+   "score": 39.4,
    "spy": 760.71
   },
   {
    "date": "2026-08-21",
-   "score": 54.5,
+   "score": 48.4,
    "spy": 763.82
   },
   {
    "date": "2026-08-24",
-   "score": 50.6,
+   "score": 46.6,
    "spy": 761.58
   },
   {
    "date": "2026-08-25",
-   "score": 45.8,
+   "score": 41.8,
    "spy": 764.01
   },
   {
    "date": "2026-08-26",
-   "score": 49.2,
+   "score": 44.2,
    "spy": 764.18
   },
   {
    "date": "2026-08-27",
-   "score": 51.5,
+   "score": 46.0,
    "spy": 769.19
   },
   {
    "date": "2026-08-28",
-   "score": 50.8,
+   "score": 47.6,
    "spy": 767.44
   },
   {
    "date": "2026-08-31",
-   "score": 47.0,
+   "score": 43.5,
    "spy": 765.15
   },
   {
    "date": "2026-09-01",
-   "score": 34.1,
+   "score": 31.5,
    "spy": 759.89
   },
   {
    "date": "2026-09-02",
-   "score": 36.6,
+   "score": 33.4,
    "spy": 763.26
   },
   {
    "date": "2026-09-03",
-   "score": 42.5,
+   "score": 40.1,
    "spy": 771.25
   },
   {
    "date": "2026-09-04",
-   "score": 47.9,
+   "score": 44.8,
    "spy": 768.28
   },
   {
    "date": "2026-09-08",
-   "score": 44.1,
+   "score": 40.8,
    "spy": 764.06
   },
   {
    "date": "2026-09-09",
-   "score": 32.3,
+   "score": 29.3,
    "spy": 760.51
   },
   {
    "date": "2026-09-10",
-   "score": 36.2,
+   "score": 31.1,
    "spy": 755.95
   },
   {
    "date": "2026-09-11",
-   "score": 35.9,
+   "score": 32.4,
    "spy": 762.4
   },
   {
    "date": "2026-09-14",
-   "score": 24.7,
+   "score": 22.9,
    "spy": 759.0
   },
   {
    "date": "2026-09-15",
-   "score": 21.9,
+   "score": 20.4,
    "spy": 755.51
   },
   {
    "date": "2026-09-16",
-   "score": 18.6,
+   "score": 17.7,
    "spy": 752.18
   },
   {
    "date": "2026-09-17",
-   "score": 27.2,
+   "score": 25.3,
    "spy": 760.71
   },
   {
    "date": "2026-09-18",
-   "score": 23.9,
+   "score": 22.0,
    "spy": 761.69
   },
   {
    "date": "2026-09-21",
-   "score": 30.9,
+   "score": 29.3,
    "spy": 773.5
   },
   {
    "date": "2026-09-22",
-   "score": 32.9,
+   "score": 32.1,
    "spy": 773.38
   },
   {
@@ -815,215 +793,228 @@
   },
   {
    "date": "2026-09-24",
-   "score": 35.4,
+   "score": 36.4,
    "spy": 767.18
   },
   {
    "date": "2026-09-25",
-   "score": 40.7,
+   "score": 43.0,
    "spy": 771.35
   },
   {
    "date": "2026-09-28",
-   "score": 30.7,
+   "score": 34.0,
    "spy": 765.61
   },
   {
    "date": "2026-09-29",
-   "score": 23.3,
+   "score": 25.3,
    "spy": 764.2
   },
   {
    "date": "2026-09-30",
-   "score": 18.0,
+   "score": 18.7,
    "spy": 762.63
   },
   {
    "date": "2026-10-01",
-   "score": 23.6,
+   "score": 25.0,
    "spy": 763.99
   },
   {
    "date": "2026-10-02",
-   "score": 22.4,
+   "score": 23.7,
    "spy": 769.64
   },
   {
    "date": "2026-10-05",
-   "score": 27.2,
+   "score": 29.3,
    "spy": 774.83
   },
   {
    "date": "2026-10-06",
-   "score": 33.1,
+   "score": 34.2,
    "spy": 779.09
   },
   {
    "date": "2026-10-07",
-   "score": 24.2,
+   "score": 25.6,
    "spy": 777.22
   },
   {
    "date": "2026-10-08",
-   "score": 21.7,
+   "score": 24.1,
    "spy": 773.93
   },
   {
    "date": "2026-10-09",
-   "score": 25.4,
+   "score": 26.7,
    "spy": 778.57
   },
   {
    "date": "2026-10-12",
-   "score": 24.5,
+   "score": 23.8,
    "spy": 778.1
   },
   {
    "date": "2026-10-13",
-   "score": 23.6,
+   "score": 22.7,
    "spy": 778.01
   },
   {
    "date": "2026-10-14",
-   "score": 14.4,
+   "score": 13.0,
    "spy": 769.6
   },
   {
    "date": "2026-10-15",
-   "score": 21.3,
+   "score": 20.3,
    "spy": 771.79
   },
   {
    "date": "2026-10-16",
-   "score": 4.8,
+   "score": 3.6,
    "spy": 763.25
   },
   {
    "date": "2026-10-19",
-   "score": 10.9,
+   "score": 11.3,
    "spy": 766.48
   },
   {
    "date": "2026-10-20",
-   "score": 14.3,
+   "score": 14.5,
    "spy": 769.05
   },
   {
    "date": "2026-10-21",
-   "score": 25.6,
+   "score": 29.3,
    "spy": 773.09
   },
   {
    "date": "2026-10-22",
-   "score": 11.8,
+   "score": 14.5,
    "spy": 763.96
   },
   {
    "date": "2026-10-23",
-   "score": 4.4,
+   "score": 4.3,
    "spy": 759.97
   },
   {
    "date": "2026-10-26",
-   "score": 11.0,
+   "score": 10.5,
    "spy": 765.37
   },
   {
    "date": "2026-10-27",
-   "score": 19.6,
+   "score": 17.1,
    "spy": 769.66
   },
   {
    "date": "2026-10-28",
-   "score": 19.6,
+   "score": 18.2,
    "spy": 772.31
   },
   {
    "date": "2026-10-29",
-   "score": 16.6,
+   "score": 15.3,
    "spy": 769.36
   },
   {
    "date": "2026-10-30",
-   "score": -1.6,
+   "score": -2.8,
    "spy": 755.72
   },
   {
    "date": "2026-11-02",
-   "score": -9.1,
+   "score": -10.2,
    "spy": 752.1
   },
   {
    "date": "2026-11-03",
-   "score": -5.3,
+   "score": -6.4,
    "spy": 754.35
   },
   {
    "date": "2026-11-04",
-   "score": 8.1,
+   "score": 7.3,
    "spy": 766.81
   },
   {
    "date": "2026-11-05",
-   "score": -31.0,
+   "score": -31.9,
    "spy": 733.0
   },
   {
    "date": "2026-11-06",
-   "score": -31.1,
+   "score": -32.3,
    "spy": 735.29
   },
   {
    "date": "2026-11-09",
-   "score": -9.2,
+   "score": -9.9,
    "spy": 752.69
   },
   {
    "date": "2026-11-10",
-   "score": -6.1,
+   "score": -6.6,
    "spy": 749.92
   },
   {
    "date": "2026-11-11",
-   "score": 1.6,
+   "score": 1.0,
    "spy": 759.81
   },
   {
    "date": "2026-11-12",
-   "score": -1.4,
+   "score": -2.3,
    "spy": 757.12
   },
   {
    "date": "2026-11-13",
-   "score": -1.1,
+   "score": -1.3,
    "spy": 754.37
   },
   {
    "date": "2026-11-16",
-   "score": -16.7,
+   "score": -17.1,
    "spy": 739.95
   },
   {
    "date": "2026-11-17",
-   "score": -30.3,
+   "score": -30.5,
    "spy": 732.44
   },
   {
    "date": "2026-11-18",
-   "score": -31.7,
+   "score": -31.2,
    "spy": 730.2
   },
   {
    "date": "2026-11-19",
-   "score": -48.5,
+   "score": -49.5,
    "spy": 715.87
+  },
+  {
+   "date": "2026-11-20",
+   "score": -65.7,
+   "spy": 689.81
   }
  ],
  "track": {
-  "daysLogged": 15,
+  "daysLogged": 16,
   "gradedCalls21": 0,
   "hitRate21": null,
   "recent": [
+   {
+    "date": "2026-11-20",
+    "score": -65.7,
+    "label": "Bearish",
+    "top3": "XLV,XLU,XLF",
+    "spy21": null,
+    "spy63": null
+   },
    {
     "date": "2026-11-19",
     "score": -48.5,
@@ -1146,7 +1137,7 @@
    }
   ]
  },
- "generatedAt": "2026-11-19T22:31:29+00:00",
+ "generatedAt": "2026-11-20T22:27:35+00:00",
  "sample": false,
  "universe": {
   "XLK": {
